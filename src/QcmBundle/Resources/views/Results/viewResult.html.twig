@@ -1,0 +1,113 @@
+{% extends '::base.html.twig' %}
+
+{% block customCss %}
+    {% if  stats %}
+        <style type='text/css'>
+
+            @-webkit-keyframes barMoyenne {
+                from {
+                    width: 0px;
+                }
+                to {
+                    width: {{ stats.moyenneResultats }}%;
+                }
+            }
+
+            @keyframes barMeilleur {
+                from {
+                    width: 0px;
+                }
+                to {
+                    width: {{ stats.meilleurResultat }}%;
+                }
+            }
+
+            .ui_box__inner .progress_bar_moyenne {
+                width: {{ stats.moyenneResultats }}%;
+            }
+
+            .ui_box__inner .progress_bar_meilleur {
+                width: {{ stats.meilleurResultat }}%;
+            }
+        </style>
+
+        <link rel="stylesheet" href="{{ asset('css/stats.css') }}">
+    {% endif %}
+
+
+
+{% endblock %}
+
+{% block content %}
+    {% if  stats %}
+        <h2 class="title">Statistiques du qcm : {{ qcm.titre }}</h2>
+
+        <div class='ui'>
+            <div class='ui_box'>
+                <div class='ui_box__inner'>
+                    <h3>
+                        Statistiques des utilisateurs :
+                    </h3>
+                    <h4>Moyenne de bonne réponse</h4>
+                    <div class='stat'>
+                        <span>{{ stats.moyenneResultats|round }}%</span>
+                    </div>
+                    <div class='progress'>
+                        <div class='progress_bar_moyenne'></div>
+                    </div>
+                    <p>Moyenne de bonnes réponses sur un total de {{ stats.nombreUsers }} utilisateurs intérogés</p>
+
+                    <hr>
+
+                    <h4>Le Meilleur résultat : ({{ stats.userMeilleurResultat }})</h4>
+
+                    <div class='stat'>
+                        <span>{{ stats.meilleurResultat|round }}% de bonnes réponses</span>
+                    </div>
+                    <div class='progress'>
+                        <div class='progress_bar_meilleur'></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class='ui'>
+            <div class='ui_box'>
+                <div class='ui_box__inner'>
+                    <h3 class="sousTitre">
+                        Résultats des utilisateurs :
+                    </h3>
+
+                    <div id="panel">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>User</th>
+                                <th>Résultat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for resultat in allResults %}
+                                <tr>
+                                    <td>{{ resultat.id }}</td>
+                                    <td>{{ resultat.user }}</td>
+                                    <td>{{ resultat.nbReponsesOK }}/{{ resultat.nbQuestions }}</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="jumbotron">
+            <h3 align="center">Aucun résultat pour ce QCM!</h3>
+        </div>
+    {% endif %}
+
+{% endblock %}

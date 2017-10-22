@@ -1,0 +1,93 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
+
+h2.title{
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #6e6969;
+    text-align: center;
+}
+
+
+.ui {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #6e6969;
+    box-shadow: none;
+}
+
+.ui_box {
+    width: 100%;
+    position: relative;
+    background: #fff;
+    float: left;
+    box-shadow: -1px 0px rgba(255, 255, 255, 0.07);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition-property: background,-webkit-transform;
+    transition-property: background,-webkit-transform;
+    transition-property: transform,background;
+    transition-property: transform,background,-webkit-transform;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+.ui_box__inner {
+    padding: 30px;
+}
+.ui_box__inner span {
+    font-size: 36px;
+    font-weight: 700;
+}
+.ui_box__inner .progress {
+    width: 100%;
+    margin-top: 10px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+}
+
+.ui_box__inner .progress_bar {
+    height: 6px;
+    float: left;
+    background: #4FA584;
+    -webkit-animation: bar 2s;
+}
+
+.ui_box__inner .progress_bar_moyenne {
+    height: 6px;
+    float: left;
+    background: #4FA584;
+    -webkit-animation: barMoyenne 2s;
+}
+
+.ui_box__inner .progress_bar_meilleur {
+    height: 6px;
+    float: left;
+    background: #4FA584;
+    -webkit-animation: barMeilleur 2s;
+}
+
+.ui_box h3 {
+    font-weight: normal;
+    font-size: 22px;
+    margin: -4px 0px 35px 0px;
+    text-decoration: underline;
+}
+.ui_box h4 {
+    font-size: 16px;
+    clear: left;
+    font-weight: 400;
+    width: 100%;
+    margin: 2px 0px 15px 0px;
+}
+
+.ui_box__inner p{
+    color: #b6b6b6;
+}
+
+h3.sousTitre {
+    font-weight: normal;
+    font-size: 22px;
+    margin: -4px 0px 35px 0px;
+    text-decoration: underline;
+}

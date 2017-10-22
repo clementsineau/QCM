@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+{% block content %}
+    <form method="post" action="{{ path('qcmCreate_index') }}" data-toggle="validator" id="formCreate">
+        <script>
+            function ajoutQuestion(){
+                var count = $(".qGRP").length + 1;
+                var html = "<div class='panel panel-warning qGRP' id='"+count+"'>" +
+                    "<div class='panel-heading'>Question "+count+"</div>" +
+                    "<div class='panel-body'>" +
+                        "<div class='form-group'>" +
+                        "<input name='question_"+count+"' type='text' class='form-control' id='question_"+count+"' placeholder='Question' required>" +
+                        "</div>" +
+                        "<div class='form-group'>" +
+                        "<input name='reponse_"+count+"' type='text' class='form-control' id='reponse_"+count+"' placeholder='Reponse' required>" +
+                        "</div>" +
+                        "<div class='form-group'>" +
+                        "<input name='prop1_"+count+"' type='text' class='form-control' id='prop1_"+count+"' placeholder='Autre proposition 1' required>" +
+                        "</div>" +
+                        "<div class='form-group'>" +
+                        "<input name='prop2_"+count+"' type='text' class='form-control' id='prop2_"+count+"' placeholder='Autre proposition 2' required>" +
+                        "</div>" +                        "<div class='form-group'>" +
+
+                        "<input name='prop3_"+count+"' type='text' class='form-control' id='prop3_"+count+"' placeholder='Autre proposition 3' required>" +
+                        "</div>" +
+                        "</div>" +
+                    "</div>";
+                $("#questionsGrp").append(html);
+                $('input[name=nbQuestions]').val("0"+(parseInt($('input[name=nbQuestions]').val())+1));
+                $('#formCreate').validator('destroy');
+                $('#formCreate').validator('update');
+            }
+        </script>
+        <div class="panel panel-warning">
+            <div class="panel-heading">Créer un QCM</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input name="titre" type="text" class="form-control" id="titre" placeholder="Titre de votre QCM" required>
+                </div>
+                <div class="form-group" id="questionsGrp">
+
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-md btn-warning" onclick="ajoutQuestion()">Ajouter une question</button>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="nbQuestions" value="0" data-validate="true" data-minlength="2" />
+                    <button type="submit" class="btn btn-md btn-success">Valider</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

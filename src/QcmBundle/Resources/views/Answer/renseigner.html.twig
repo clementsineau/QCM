@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Vous allez repondre au QCM "{{ titre.titre | capitalize }}"</div>
+        <div class="panel-body">
+            <form action="{{ path('qcmAnswerrenseigner_index',{'id' : titre.id})}}" method="post">
+                <label for="name">Nom </label><input id="name" type="text" name="user" required placeholder="Entrer votre nom" class="form-control">
+                {% for question in qcm %}
+                    <div>
+                       <h2  class="page-header">{{ question.question }}</h2>
+                        {% for key,proposition in question.propositions %}
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="checkbox">
+                                <label><input type="radio" name="proposition[{{ question.id }}]" value="{{ proposition }}" >&nbsp;{{ proposition }}</label>
+                            </div></li></ul>
+                        {% endfor %}
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success btn-block">Valider</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+

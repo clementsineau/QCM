@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block customCss %}<!-- Place for custom css -->{% endblock %}
+
+    <script src="{{ asset("js/jquery.js") }}"></script>
+    <script src="{{ asset("js/validator.js") }}"></script>
+    {% block titre %}<title>QCM</title>{% endblock %}
+</head>
+<body>
+
+<div class="container">
+
+{% block nav %} {% include '::nav.html.twig' %} {% endblock %}
+    <div id="header" class="jumbotron " align="center">
+
+
+        <h1>Ma plateforme de QCM</h1>
+        <p>
+            Ce projet est propulsé par Clément SINEAU
+
+        </p>
+
+    </div>
+</div>
+<div class="container">
+    <section id="content">
+        {% for msg in app.session.flashBag.get('success') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
+
+        {% block content %}
+
+
+        {% endblock %}
+    </section>
+</div>
+
+
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="{{ asset("js/bootstrap.js") }}"></script>
+</body>
+<footer >
+            <p align="center">The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+</footer>
+</html>
